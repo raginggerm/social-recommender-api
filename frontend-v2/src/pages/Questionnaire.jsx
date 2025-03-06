@@ -114,15 +114,15 @@ const Questionnaire = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="text-xl text-gray-600">Cargando...</div>
+        <div className="text-lg sm:text-xl text-gray-600">Cargando...</div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="text-center py-8">
-        <div className="text-red-600 mb-4">{error}</div>
+      <div className="text-center py-4 sm:py-8">
+        <div className="text-red-600 mb-4 px-4 sm:px-0">{error}</div>
         <button
           onClick={() => window.location.reload()}
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
@@ -134,20 +134,20 @@ const Questionnaire = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+    <div className="w-full max-w-2xl mx-auto px-2 sm:px-4">
+      <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
         Cuestionario de Preferencias
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
         {questions.map((question) => (
-          <div key={question.id} className="bg-white p-6 rounded-lg shadow">
-            <label className="block text-lg font-medium text-gray-900 mb-4">
+          <div key={question.id} className="bg-white p-4 sm:p-6 rounded-lg shadow">
+            <label className="block text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">
               {question.text}
             </label>
             <select
               value={answers[question.id]}
               onChange={(e) => handleAnswerChange(question.id, e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-sm sm:text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md"
             >
               <option value="">Selecciona una respuesta</option>
               {customAnswers[question.id]?.map((option) => (
@@ -159,11 +159,11 @@ const Questionnaire = () => {
           </div>
         ))}
         
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-6 sm:mt-8">
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+            className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
           >
             {loading ? 'Enviando...' : 'Enviar Respuestas'}
           </button>
